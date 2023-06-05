@@ -1,0 +1,13 @@
+#!/bin/bash
+
+function help(){
+    echo "use getns with resource type and resource name format"
+}
+
+if [ $# -ne 2 ]
+then
+    help
+fi
+
+
+kubectl get $1 --all-namespaces  -ojsonpath="{.items[?(@.metadata.name=='$2')].metadata.namespace}"
